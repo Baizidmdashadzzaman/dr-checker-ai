@@ -8,11 +8,13 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 
+import Script from 'next/script'
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Next.js Portfolio Starter',
-    template: '%s | Next.js Portfolio Starter',
+    default: 'DR check AI',
+    template: '%s | DR check AI',
   },
   description: 'This is my portfolio.',
   openGraph: {
@@ -46,20 +48,25 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(
-        'text-black bg-white dark:text-white dark:bg-black',
-        GeistSans.variable,
-        GeistMono.variable
-      )}
+      className="scroll-smooth"
     >
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+    
+      <body className="flex flex-col min-h-screen">
+
+<div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+  <div className="floating-element absolute top-20 left-10 w-32 h-32 bg-teal-200 rounded-full opacity-20" />
+  <div className="floating-element absolute top-60 right-20 w-24 h-24 bg-emerald-200 rounded-full opacity-25" style={{animationDelay: '2s'}} />
+  <div className="floating-element absolute bottom-40 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20" style={{animationDelay: '4s'}} />
+</div>
+
+
+        
           <Navbar />
           {children}
           <Footer />
           <Analytics />
           <SpeedInsights />
-        </main>
+
       </body>
     </html>
   )

@@ -1,40 +1,47 @@
-import Link from 'next/link'
+"use client";
 
-const navItems = {
-  '/': {
-    name: 'home',
-  },
-  '/blog': {
-    name: 'blog',
-  },
-  'https://vercel.com/templates/next.js/portfolio-starter-kit': {
-    name: 'deploy',
-  },
-}
+import Link from 'next/link'
+import { usePathname } from "next/navigation";
+
 
 export function Navbar() {
+
+  const pathname = usePathname();
+
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/dr-info", label: "DR Info" },
+    { href: "/predict", label: "Predict" },
+  ];
+  
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="lg:sticky lg:top-20">
-        <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
-          id="nav"
-        >
-          <div className="flex flex-row space-x-0 pr-10">
-            {Object.entries(navItems).map(([path, { name }]) => {
-              return (
-                <Link
-                  key={path}
-                  href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
-                >
-                  {name}
-                </Link>
-              )
-            })}
-          </div>
-        </nav>
-      </div>
-    </aside>
+    <>
+<header className="fixed w-full glass-effect backdrop-blur z-20 shadow-lg">
+  <nav className="max-w-7xl mx-auto flex items-center justify-between p-4">
+    <a href="home.html" className="text-xl font-bold text-teal-600 hover:text-teal-700 transition">
+      <span className="text-2xl">🔬</span> DR-Check AI
+    </a>
+    <div className="flex items-center space-x-4">
+      {links.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`transition font-medium text-sm ${
+                  isActive
+                    ? "bg-teal-600 text-white px-3 py-1.5 rounded-full hover:bg-teal-700"
+                    : "hover:text-teal-600"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+    </div>
+  </nav>
+</header>
+
+    </>
   )
 }
