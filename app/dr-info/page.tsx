@@ -41,7 +41,14 @@ export default function Page() {
     </p>
     <div className="sketchfab-embed-wrapper w-full max-w-4xl mx-auto">
       <div className="iframe-container rounded-xl overflow-hidden shadow-lg border border-gray-200">
-        <iframe title="Diabetes eye diseases labelled detailed" frameBorder={0} allowFullScreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/24a1efa00d484074b74dd86f06aed55f/embed"> </iframe>
+<iframe
+  title="Diabetes eye diseases labelled detailed"
+  frameBorder={0}
+  allowFullScreen
+  allow="autoplay; fullscreen; xr-spatial-tracking; execution-while-out-of-viewport; execution-while-not-rendered; web-share"
+  src="https://sketchfab.com/models/24a1efa00d484074b74dd86f06aed55f/embed"
+  style={{ width: "100%", height: "500px", border: "0" }}
+/>
       </div>
       <p style={{fontSize: 13, fontWeight: 'normal', margin: '10px 0 0 0', color: '#4A4A4A', textAlign: 'center'}}>
         <a href="https://sketchfab.com/3d-models/diabetes-eye-diseases-labelled-detailed-24a1efa00d484074b74dd86f06aed55f?utm_medium=embed&utm_campaign=share-popup&utm_content=24a1efa00d484074b74dd86f06aed55f" target="_blank" rel="nofollow" style={{fontWeight: 'bold', color: '#1CAAD9'}}> 
