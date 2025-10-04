@@ -1,5 +1,9 @@
 import { BlogPosts } from 'app/components/posts'
-import EyeModel from 'app/components/model'
+import dynamic from 'next/dynamic';
+
+const ModelViewer = dynamic(() => import("./components/ModelViewer"), {
+  ssr: false, // disable server-side rendering
+});
 
 export default function Page() {
   return (
@@ -29,7 +33,7 @@ export default function Page() {
       <center>
         {/* <model-viewer alt="Realistic Human Eye" src="static/models/realistic_human_eye.html" shadow-intensity={0} camera-controls animation-mixer autoPlay>
         </model-viewer> */}
-        <EyeModel />
+        <ModelViewer />
       </center>
       <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-10">
         <a href="index.html" className="cta-button text-white py-3 px-6 rounded-full shadow-lg font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-xl">
