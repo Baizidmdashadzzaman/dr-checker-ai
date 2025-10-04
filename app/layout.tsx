@@ -9,6 +9,12 @@ import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
+
+const HandNavigation = dynamic(
+  () => import("./components/HandNavigation"),
+  { ssr: false } 
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -60,7 +66,7 @@ export default function RootLayout({
 </div>
 
 
-        
+        <HandNavigation />
           <Navbar />
           {children}
           <Footer />

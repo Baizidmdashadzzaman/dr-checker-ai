@@ -169,3 +169,15 @@
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
+
+
+.camdiv{
+    right: 15px;
+    position: fixed;
+    text-align: center;
+    width: 200px;
+    z-index: 100;
+    border-radius: 50px;
+    bottom: 10px;
+    height: 200px;
+}
