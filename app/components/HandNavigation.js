@@ -313,7 +313,7 @@ export default function HandNavigation() {
           onClick={toggleHandsfreeMode}
           style={{
 
-            backgroundColor: isHandsfreeModeOn ? '#dc2626' : '#10b981', // Red for OFF, Green for ON
+            backgroundColor: isHandsfreeModeOn ? 'rgb(38 119 220)' : '#10b981', // Red for OFF, Green for ON
 
           }}
           className="transition font-medium text-sm bg-teal-600 text-white px-3 py-1.5 rounded-full hover:bg-teal-700"

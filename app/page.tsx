@@ -1,5 +1,6 @@
 import { BlogPosts } from 'app/components/posts'
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 const ModelViewer = dynamic(() => import("./components/ModelViewer"), {
   ssr: false, // disable server-side rendering
@@ -31,25 +32,16 @@ export default function Page() {
       {/* Import the component */}
       <style dangerouslySetInnerHTML={{__html: "\n        model-viewer {\n            width: 400px;\n            height: 400px;\n        }\n    " }} />
       <center>
-        {/* <model-viewer alt="Realistic Human Eye" src="static/models/realistic_human_eye.html" shadow-intensity={0} camera-controls animation-mixer autoPlay>
-        </model-viewer> */}
         <ModelViewer />
       </center>
       <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-10">
-        <a href="index.html" className="cta-button text-white py-3 px-6 rounded-full shadow-lg font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <Link href="/predict" className="cta-button text-white py-3 px-6 rounded-full shadow-lg font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-xl">
           🚀 Start Free Analysis
-        </a>
-        <a href="dr_info.html" className="bg-white text-teal-600 py-3 px-6 rounded-full shadow-lg font-semibold text-base border-2 border-teal-600 hover:bg-teal-50 transition-all duration-300 btn-hover-effect">
+        </Link>
+        <Link href="/dr-info" className="bg-white text-teal-600 py-3 px-6 rounded-full shadow-lg font-semibold text-base border-2 border-teal-600 hover:bg-teal-50 transition-all duration-300 btn-hover-effect">
           📚 Learn About DR
-        </a>
+        </Link>
       </div>
-      {/* 3D Human Eye Model - Moved to Hero Section */}
-      {/*      <div class="sketchfab-embed-wrapper mx-auto max-w-2xl"> */}
-      {/*        <iframe title="Human Eye (animated, photorealistic textures)" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/6adbd6538cd146d484c9ad950be69aa5/embed"> </iframe> */}
-      {/*        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> */}
-      {/*          <a href="https://sketchfab.com/3d-models/human-eye-animated-photorealistic-textures-6adbd6538cd146d484c9ad950be69aa5?utm_medium=embed&utm_campaign=share-popup&utm_content=6adbd6538cd146d484c9ad950be69aa5" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Human Eye (animated, photorealistic textures) </a> by <a href="https://sketchfab.com/docgfx?utm_medium=embed&utm_campaign=share-popup&utm_content=6adbd6538cd146d484c9ad950be69aa5" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> docgfx </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=6adbd6538cd146d484c9ad950be69aa5" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>*/}
-      {/*        </p>*/}
-      {/*      </div>*/}
     </div>
   </section>
   {/* Features Section */}
@@ -152,12 +144,12 @@ export default function Page() {
           <p className="text-base text-gray-600 mb-6 leading-relaxed">
             Early detection is crucial because diabetic retinopathy often has no symptoms in its initial stages. Regular screening can help identify the condition before it progresses to sight-threatening stages.
           </p>
-          <a href="dr_info.html" className="inline-flex items-center gap-2 bg-teal-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-teal-700 transition-colors text-sm btn-hover-effect">
+          <Link href="/dr-info" className="inline-flex items-center gap-2 bg-teal-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-teal-700 transition-colors text-sm btn-hover-effect">
             Learn More About DR
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </a>
+          </Link>
         </div>
         <div className="relative">
           <div className="bg-white p-6 rounded-xl shadow-xl dr-stats-card"> {/* Added dr-stats-card class */}
@@ -190,12 +182,12 @@ export default function Page() {
     <div className="max-w-4xl mx-auto text-center px-4">
       <h2 className="text-3xl md:text-4xl font-bold mb-5">Ready to Protect Your Vision?</h2>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="index.html" className="bg-white text-teal-600 py-2 px-5 rounded-full font-bold text-sm hover:bg-gray-100 transition-colors shadow-lg hover:text-teal-700 btn-hover-effect">
+        <Link href="/predict" className="bg-white text-teal-600 py-2 px-5 rounded-full font-bold text-sm hover:bg-gray-100 transition-colors shadow-lg hover:text-teal-700 btn-hover-effect">
           🚀 Start Free Analysis
-        </a>
-        <a href="dr_info.html" className="border-2 border-white text-white py-2 px-5 rounded-full font-bold text-sm hover:bg-white hover:text-teal-600 transition-colors btn-hover-effect">
+        </Link>
+        <Link href="/dr-info" className="border-2 border-white text-white py-2 px-5 rounded-full font-bold text-sm hover:bg-white hover:text-teal-600 transition-colors btn-hover-effect">
           📚 Learn More
-        </a>
+        </Link>
       </div>
     </div>
   </section>

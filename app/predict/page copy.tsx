@@ -1,20 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { predictDR } from "../api/huggingface";
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-// Register chart.js components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 // Types for API response
 type Predictions = {
@@ -28,7 +15,6 @@ type DRResult = {
 
 export default function ClientPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DRResult | null>(null);
 
@@ -36,7 +22,6 @@ export default function ClientPage() {
     const f = e.target.files?.[0];
     if (f) {
       setFile(f);
-      setPreview(URL.createObjectURL(f));
       document.getElementById("file-info")?.classList.remove("hidden");
       document.getElementById("file-name")!.textContent = f.name;
       document.getElementById("file-size")!.textContent =
@@ -61,12 +46,6 @@ export default function ClientPage() {
     } finally {
       setLoading(false);
     }
-  };
-
-  // Get highest predicted label
-  const getTopPrediction = (predictions: Predictions) => {
-    const sorted = Object.entries(predictions).sort((a, b) => b[1] - a[1]);
-    return sorted[0];
   };
 
   return (
@@ -129,17 +108,6 @@ export default function ClientPage() {
             </div>
           </div>
 
-          {/* Show Uploaded Image Preview */}
-          {preview && (
-            <div className="mt-4">
-              <img
-                src={preview}
-                alt="Uploaded preview"
-                className="w-full max-h-80 object-contain rounded-xl border shadow-md"
-              />
-            </div>
-          )}
-
           {/* Submit Button */}
           <button
             type="submit"
@@ -167,8 +135,7 @@ export default function ClientPage() {
                   <path
                     className="opacity-75"
                     fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 
-                      3.042 1.135 5.824 3 7.938l3-2.647z"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   />
                 </svg>
                 Analyzing...
@@ -180,50 +147,24 @@ export default function ClientPage() {
 
       {/* Result Section */}
       {result && (
-        <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-2xl shadow-lg border border-gray-200">
+        <div className="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-2xl shadow-lg border border-gray-200">
           <h2 className="text-2xl font-bold text-teal-700 mb-4">
             Prediction Result
           </h2>
 
-          {/* Top Prediction */}
-          <div className="mb-6 p-4 bg-teal-50 border-l-4 border-teal-600 rounded">
-            <h3 className="text-lg font-semibold text-teal-800">
-              Top Prediction:
-            </h3>
-            <p className="text-xl">
-              {getTopPrediction(result.predictions)[0]} —{" "}
-              {(getTopPrediction(result.predictions)[1] * 100).toFixed(2)}%
-            </p>
-          </div>
+          {/* Show predictions */}
+          <ul className="text-gray-800">
+            {Object.entries(result.predictions).map(([label, prob]) => (
+              <li key={label} className="mb-2">
+                <span className="font-semibold">{label}</span>:{" "}
+                {(prob * 100).toFixed(2)}%
+              </li>
+            ))}
+          </ul>
 
-          {/* Prediction Chart */}
-          <div className="mt-4">
-            <Bar
-              data={{
-                labels: Object.keys(result.predictions),
-                datasets: [
-                  {
-                    label: "Prediction Confidence (%)",
-                    data: Object.values(result.predictions).map(
-                      (p) => p * 100
-                    ),
-                    backgroundColor: "rgba(13, 148, 136, 0.7)",
-                  },
-                ],
-              }}
-              options={{
-                responsive: true,
-                plugins: {
-                  legend: { display: false },
-                  title: { display: true, text: "Prediction Distribution" },
-                },
-              }}
-            />
-          </div>
-
-          {/* Heatmap */}
+          {/* Show Grad-CAM heatmap */}
           {result.heatmap && (
-            <div className="mt-6">
+            <div className="mt-4">
               <h3 className="font-semibold text-teal-600 mb-2">Heatmap</h3>
               <img
                 src={result.heatmap}

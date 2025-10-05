@@ -18,9 +18,9 @@ export function Navbar() {
     <>
 <header className="fixed w-full glass-effect backdrop-blur z-20 shadow-lg">
   <nav className="max-w-7xl mx-auto flex items-center justify-between p-4">
-    <a href="home.html" className="text-xl font-bold text-teal-600 hover:text-teal-700 transition">
+    <Link href="/" className="text-xl font-bold text-teal-600 hover:text-teal-700 transition">
       <span className="text-2xl">🔬</span> DR-Check AI
-    </a>
+    </Link>
     <div className="flex items-center space-x-4">
       {links.map((link) => {
             const isActive = pathname === link.href;

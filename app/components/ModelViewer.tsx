@@ -12,6 +12,8 @@ export default function ModelViewer() {
       animation-name="*"
       autoplay
       style={{ width: '100%', height: '250px' }}
+      disable-zoom
+      interaction-prompt="none"
     />
   );
 }
