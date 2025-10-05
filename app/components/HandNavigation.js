@@ -274,8 +274,8 @@ export default function HandNavigation() {
             videoRef.current.srcObject = stream;
             const camera = new Camera(videoRef.current, {
               onFrame: async () => await hands.send({ image: videoRef.current }),
-              width: 150,
-              height: 140,
+              width: 200,
+              height: 220,
             });
             cameraRef.current = camera; // Store instance
             camera.start();
@@ -334,8 +334,8 @@ export default function HandNavigation() {
            
             top: "20px",
             right: "20px",
-            width: "150px",
-            height: "140px",
+            width: "200px",
+            height: "220px",
             pointerEvents: "none",
             borderRadius:"10px",
             border: "2px solid #14b8a6",
